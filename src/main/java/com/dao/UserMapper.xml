@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UserMapper">
+    <!--增加一个Book-->
+    <insert id="insertUser">
+        insert into `user`(userId,username,password,realname,telephone,email,address,workID,isRegister,foundtime,gender,headpath,accountState,lastLoginTime,question,answer,identity)
+        values (#{userID},#{username},#{password},#{realname},#{telephone},#{email},#{address},#{workID},#{isRegister},#{foundtime},#{gender},#{headpath},#{accountState},#{lastLoginTime},#{question},#{answer},#{identity});
+    </insert>
+
+    <insert id="insertByAdmin">
+        insert into `user`(userId,username,password,realname,telephone,email,address,workID,isRegister,foundtime,gender,headpath,accountState,lastLoginTime,question,answer,identity,attachUnit)
+        values (#{userID},#{username},#{password},#{realname},#{telephone},#{email},#{address},#{workID},#{isRegister},#{foundtime},#{gender},#{headpath},#{accountState},#{lastLoginTime},#{question},#{answer},#{identity},#{attachUnit});
+    </insert>
+
+    <select id="selectByIn" resultType="user">
+        select password from user where username=#{username}
+    </select>
+
+    <select id="selectByRegName" resultType="user">
+        select * from user where username=#{username}
+    </select>
+
+    <select id="selectAll" resultType="user">
+        select * from user
+    </select>
+
+    <update id="updateInfo">
+        update user set user.username=#{username},user.realname=#{realname},user.telephone=#{telephone},user.gender=#{gender},user.email=#{email},user.address=#{address},user.question=#{question},user.answer=#{answer} where user.username=#{username}
+    </update>
+
+    <update id="updateByID">
+        update user set user.username=#{username},user.realname=#{realname},user.telephone=#{telephone},user.gender=#{gender},user.email=#{email},user.address=#{address},user.question=#{question},user.answer=#{answer} where user.userID=#{userID}
+    </update>
+
+
+
+    <select id="selectByQuestion" resultType="user">
+        select * from user where question=#{question} and username=#{username}
+    </select>
+
+    <select id="selectByID" resultType="user">
+        select * from user where userID=#{userID}
+    </select>
+
+    <update id="changePassword">
+        update user set password=#{password} where username=#{username}
+    </update>
+
+    <delete id="deleteByID">
+        delete from user where userID=#{userID}
+    </delete>
+
+    <update id="updateByTime">
+        update user set lastLoginTime=#{lastLoginTime} where username=#{username}
+    </update>
+</mapper>

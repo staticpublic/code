@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.UnitMapper">
+    <insert id="insertUnit">
+        insert into unit(unitName,acessMan,telephone,email,address,property,headpath)
+        values(#{unitName},#{acessMan},#{telephone},#{email},#{address},#{property},#{headpath})
+    </insert>
+
+    <select id="selectAll" resultType="unit">
+        select * from unit
+    </select>
+
+    <select id="selectByName" resultType="unit">
+        select * from unit where unitName like '%${unitName}%'
+    </select>
+
+    <select id="selectByID" resultType="unit">
+        select * from unit where unitID=#{unitID}
+    </select>
+
+    <update id="updateUnit">
+        update unit set acessMan=#{acessMan},telephone=#{telephone},email=#{email},address=#{address},property=#{property} where unitId=#{unitID}
+    </update>
+
+    <delete id="deleteByID">
+        delete from unit where unitID=#{unitID}
+    </delete>
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.SampleMapper">
+    <select id="selectAll" resultType="sample">
+        select * from sample where isVisible='是'
+    </select>
+
+    <select id="selectAllByAdmin" resultType="sample">
+        select * from sample
+    </select>
+
+    <select id="selectAllByID" resultType="sample">
+        select * from sample where sampleID=#{sampleID}
+    </select>
+
+    <update id="updateSample">
+        update sample set birthplace=#{birthplace},birthtime=#{birthtime},material=#{material},years=#{years},recordman=#{recordman},description=#{description},intime=#{intime},isVisible=#{isVisible} where sampleID=#{sampleID}
+    </update>
+
+    <delete id="deleteByID">
+        delete from sample where sampleID=#{sampleID}
+    </delete>
+
+    <select id="selectByUnit" resultType="sample">
+        select * from sample where belongUnit=#{belongUnit}
+    </select>
+
+    <insert id="insertSample">
+        insert into sample(name,birthplace,birthtime,material,years,recordman,description,intime,belongUnit,isVisible,imagepath)
+        values (#{name},#{birthplace},#{birthtime},#{material},#{years},#{recordman},#{description},#{intime},#{belongUnit},#{isVisible},#{imagepath})
+    </insert>
+
+    <select id="selectByName" resultType="sample">
+        select * from sample where name like '%${name}%'
+    </select>
+
+    <select id="selectByPlace" resultType="sample">
+        select * from sample where birthplace like '%${birthplace}%'
+    </select>
+
+    <select id="selectByMaterial" resultType="sample">
+        select * from sample where material like '%${material}%'
+    </select>
+
+    <select id="selectByVagueUnit" resultType="sample">
+        select * from sample where belongUnit like '%${belongUnit}%'
+    </select>
+
+    <select id="selectBorrow" resultType="sample">
+        select * from sample where belongUnit!=#{belongUnit} and isVisible='是'
+    </select>
+
+</mapper>
